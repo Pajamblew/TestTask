@@ -6,7 +6,6 @@ namespace xUnitTest
     {
         [Theory]
         [InlineData(5, 78.53981633974483)]
-        [InlineData(0, 123)]
         [InlineData(1, 3.141592653589793)]
         public void CircleAreaEqualExpectedTheory(
             double radius, double expected)
@@ -17,8 +16,7 @@ namespace xUnitTest
         }
         [Theory]
         [InlineData(3,4,5,6)]
-        [InlineData(0, 1, 4, 5)]
-        [InlineData(5, 1, 2, 4)]
+        [InlineData(2, 6, 7, 5.562148865321747)]
         public void TriangleAreaEqualExpectedTheory(
             double firstSide, double secondSide, double thirdSide, double expected)
         {
@@ -27,9 +25,8 @@ namespace xUnitTest
             Assert.Equal(expected, triangle.Area);
         }
         [Theory]
-        [InlineData(3,4,5, true)]
-        [InlineData(0, 1, 4, true)]
-        [InlineData(1, 4, 8, false)]
+        [InlineData(3, 4, 5, true)]
+        [InlineData(5, 7, 9, false)]
 
         public void TriangleIsRightEqualExpectedTheory(
             double firstSide, double secondSide, double thirdSide, bool expected)
@@ -40,14 +37,22 @@ namespace xUnitTest
         }
 
 
-        [Fact]
-        public void TriangleOutOfRange()
+        [Theory]
+        [InlineData(0, 3, 3)]
+        [InlineData(2, 5, 10)]
+        public void TriangleOutOfRangeTheory(
+            double firstSide, double secondSide, double thirdSide)
         {
-            double firstSide = 0;
-            double secondSide = 0;
-            double thirdSide = 0;
 
             Assert.Throws<ArgumentOutOfRangeException>(() => new Triangle(firstSide, secondSide, thirdSide));
+        }
+        [Theory]
+        [InlineData(0)]
+        [InlineData(-1)]
+        public void CircleOutOfRange(
+            double radius)
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => new Circle(radius));
         }
     }
 }
