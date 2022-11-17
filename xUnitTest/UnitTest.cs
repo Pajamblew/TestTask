@@ -41,7 +41,7 @@ namespace xUnitTest
 
 
         [Fact]
-        public void Triangle()
+        public void TriangleOutOfRange()
         {
             double firstSide = 0;
             double secondSide = 0;
