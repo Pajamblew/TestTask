@@ -8,10 +8,10 @@ namespace TestTask
 {
     public class Triangle : Shape
     {
-        public double firstSide { get; set; }
-        public double secondSide { get; set; }
-        public double thirdSide { get; set; }
-        protected override double Perimeter { get => firstSide + secondSide + thirdSide; }
+        public double FirstSide { get; }
+        public double SecondSide { get; }
+        public double ThirdSide { get; }
+        protected override double Perimeter { get => FirstSide + SecondSide + ThirdSide; }
         public Triangle(double firstSide, double secondSide, double thirdSide)
         {
             if (firstSide <= 0 ||
@@ -24,22 +24,23 @@ namespace TestTask
                 throw new ArgumentOutOfRangeException($"Incorrect triangle side");
             }
 
-            this.firstSide = firstSide;
-            this.secondSide = secondSide;
-            this.thirdSide = thirdSide;
+            this.FirstSide = firstSide;
+            this.SecondSide = secondSide;
+            this.ThirdSide = thirdSide;
         }
 
         public override double Area => Math.Sqrt(Perimeter / 2
-            * (Perimeter / 2 - firstSide)
-            * (Perimeter / 2 - secondSide)
-            * (Perimeter / 2 - thirdSide));
+            * (Perimeter / 2 - FirstSide)
+            * (Perimeter / 2 - SecondSide)
+            * (Perimeter / 2 - ThirdSide));
 
         public bool CheckForRight()
         {
-            double[] sides = { firstSide, secondSide, thirdSide };
-            sides.OrderBy(x => x);
+            double[] sides = { FirstSide, SecondSide, ThirdSide };
+            double[] sortedSides = sides.OrderBy(x => x).ToArray();
 
-            return Math.Pow(sides[2], 2) == Math.Pow(sides[0], 2) + Math.Pow(sides[1], 2);
+
+            return Math.Pow(sortedSides[2], 2) == Math.Pow(sortedSides[0], 2) + Math.Pow(sortedSides[1], 2);
         }
     }
 }

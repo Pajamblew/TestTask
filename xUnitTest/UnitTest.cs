@@ -25,7 +25,7 @@ namespace xUnitTest
             Assert.Equal(expected, triangle.Area);
         }
         [Theory]
-        [InlineData(3, 4, 5, true)]
+        [InlineData(5, 4, 3, true)]
         [InlineData(5, 7, 9, false)]
 
         public void TriangleIsRightEqualExpectedTheory(
